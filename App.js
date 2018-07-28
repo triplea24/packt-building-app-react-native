@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, FlatList, View} from 'react-native';
 
 import FilmRow from './src/films/components/FilmRow';
 
@@ -18,15 +18,41 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const films = [
+  {
+    image: 'https://images-na.ssl-images-amazon.com/images/I/816bYlte58L._SY679_.jpg',
+    title: 'Harvey',
+    year: 1950,
+  },
+  {
+    image: 'https://images-na.ssl-images-amazon.com/images/I/816bYlte58L._SY679_.jpg',
+    title: 'Harvey',
+    year: 1950,
+  },
+  {
+    image: 'https://images-na.ssl-images-amazon.com/images/I/816bYlte58L._SY679_.jpg',
+    title: 'Harvey',
+    year: 1950,
+  },
+];
+
 type Props = {};
 export default class App extends Component<Props> {
+  _keyExtractor = (item,index) => index+''
+
+  _renderItem = ({item}) => (
+    <FilmRow 
+      title={item.title}
+      year={item.year}
+      image={item.image}/>
+  )
   render() {
     return (
       <View style={styles.container}>
-        <FilmRow 
-          title={'Harvey'}
-          year={1950}
-          image={'https://images-na.ssl-images-amazon.com/images/I/816bYlte58L._SY679_.jpg'}/>
+        <FlatList 
+          data={films}
+          renderItem={this._renderItem}
+          keyExtractor={this._keyExtractor}/>
       </View>
     );
   }
