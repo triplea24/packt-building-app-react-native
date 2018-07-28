@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 type Props= {
     title: string,
@@ -20,6 +21,7 @@ export default class FilmRow extends Component<Props,void>{
                     <Text style={styles.title}>{this.props.title}</Text>
                     <Text style={styles.year}>{this.props.year}</Text>
                 </View>
+                <Icon style={styles.disclosure} name="chevron-right" size={30} color="#333" />
             </TouchableOpacity>
         );
     }
